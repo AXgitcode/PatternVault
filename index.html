@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PatternVault - Hidden Code Finder</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f8ff; text-align: center; padding: 50px; }
+        h1 { color: #ff4500; }
+        textarea { width: 80%; height: 100px; font-size: 16px; }
+        button { background-color: #32cd32; color: white; font-size: 18px; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #228b22; }
+        #result { margin-top: 20px; font-size: 20px; font-weight: bold; color: #00008b; }
+    </style>
+</head>
+<body>
+    <h1>PatternVault - Hidden Code Finder</h1>
+    <p>Paste any text below and click the button to reveal the hidden code!</p>
+    <textarea id="userText" placeholder="Paste your text here..."></textarea><br><br>
+    <button onclick="findHiddenCode()">Find Hidden Code</button>
+    <h2 id="result"></h2>
+    <button onclick="copyCode()">Copy Code</button>
+
+    <script>
+        function findHiddenCode() {
+            let text = document.getElementById("userText").value;
+            let words = text.split(/\s+/);
+            let firstLetters = words.map(word => word[0]).join('');
+            document.getElementById("result").innerText = "Hidden code: " + firstLetters;
+        }
+
+        function copyCode() {
+            let code = document.getElementById("result").innerText.replace("Hidden code: ", "");
+            navigator.clipboard.writeText(code);
+            alert("Copied: " + code);
+        }
+    </script>
+</body>
+</html>
